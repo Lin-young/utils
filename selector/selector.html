@@ -2,41 +2,41 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Ä£ÄâÁª¶¯²Ëµ¥-µØÖ·Ñ¡ÔñÆ÷</title>
+    <title>è”åŠ¨èœå•-æ¨¡æ‹Ÿåœ°å€é€‰æ‹©å™¨</title>
 </head>
 <body>
 <select id="province">
-    <option value="-1">-ÇëÑ¡ÔñÊ¡·İ-</option>
+    <option value="-1">-è¯·é€‰æ‹©çœä»½-</option>
 </select>
 <select name="" id="city">
-    <option value="-1">-ÇëÑ¡ÔñÊĞÇø-</option>
+    <option value="-1">-è¯·é€‰æ‹©å¸‚åŒº-</option>
 </select>
 <select name="" id="district">
-    <option value="-1">-ÇëÑ¡ÔñÇøÓò-</option>
+    <option value="-1">-è¯·é€‰æ‹©åŒºåŸŸ-</option>
 </select>
 
 <script>
 	(function(){
 		var distpicker = {
-			provinces: 	 ['±±¾©ÊĞ', 'ÉÏº£ÊĞ', 'Õã½­Ê¡'],
+			provinces: ['åŒ—äº¬å¸‚', 'ä¸Šæµ·å¸‚', 'æµ™æ±Ÿçœ'],
 			cities: [
-				['¶«³ÇÇø', 'Î÷³ÇÇø', 'º£µíÇø'],
-				['ÆÖ¶«Çø', 'ãÉĞĞÇø', '»ÆÆÖÇø'],
-				['º¼ÖİÊĞ', 'ÉÜĞËÊĞ', 'Äş²¨ÊĞ']
+				['ä¸œåŸåŒº', 'è¥¿åŸåŒº', 'æµ·æ·€åŒº'],
+				['æµ¦ä¸œåŒº', 'é—µè¡ŒåŒº', 'é»„æµ¦åŒº'],
+				['æ­å·å¸‚', 'ç»å…´å¸‚', 'å®æ³¢å¸‚']
 			],
 			districts: [
 				[
-					['¶«³ÇÒ»Çø', '¶«³Ç¶şÇø', '¶«³ÇÈıÇø'],
-					['Î÷³ÇÒ»Çø', 'Î÷³Ç¶şÇø', 'Î÷³ÇÈıÇø'],
-					['º£µíÒ»Çø', 'º£µí¶şÇø', 'º£µíÈıÇø']
+					['ä¸œåŸä¸€åŒº', 'ä¸œåŸäºŒåŒº', 'ä¸œåŸä¸‰åŒº'],
+					['è¥¿åŸä¸€åŒº', 'è¥¿åŸäºŒåŒº', 'è¥¿åŸä¸‰åŒº'],
+					['æµ·æ·€ä¸€åŒº', 'æµ·æ·€äºŒåŒº', 'æµ·æ·€ä¸‰åŒº']
 				],[
-					['ÆÖ¶«Ò»Çø', 'ÆÖ¶«¶şÇø', 'ÆÖ¶«ÈıÇø'],
-					['ãÉĞĞÒ»Çø', 'ãÉĞĞ¶şÇø', 'ãÉĞĞÈıÇø'],
-					['»ÆÆÖÒ»Çø', '»ÆÆÖ¶şÇø', '»ÆÆÖÈıÇø']
+					['æµ¦ä¸œä¸€åŒº', 'æµ¦ä¸œäºŒåŒº', 'æµ¦ä¸œä¸‰åŒº'],
+					['é—µè¡Œä¸€åŒº', 'é—µè¡ŒäºŒåŒº', 'é—µè¡Œä¸‰åŒº'],
+					['é»„æµ¦ä¸€åŒº', 'é»„æµ¦äºŒåŒº', 'é»„æµ¦ä¸‰åŒº']
 				],[
-					['º¼ÖİÒ»Çø', 'º¼Öİ¶şÇø', 'º¼ÖİÈıÇø'],
-					['ÉÜĞËÒ»Çø', 'ÉÜĞË¶şÇø', 'ÉÜĞËÈıÇø'],
-					['Äş²¨Ò»Çø', 'Äş²¨¶şÇø', 'Äş²¨ÈıÇø']
+					['æ­å·ä¸€åŒº', 'æ­å·äºŒåŒº', 'æ­å·ä¸‰åŒº'],
+					['ç»å…´ä¸€åŒº', 'ç»å…´äºŒåŒº', 'ç»å…´ä¸‰åŒº'],
+					['å®æ³¢ä¸€åŒº', 'å®æ³¢äºŒåŒº', 'å®æ³¢ä¸‰åŒº']
 				]
 			],
 			el_prov: document.getElementById('province'),
@@ -46,25 +46,25 @@
 				this.province()
 				this.trigger()
 			},
-			createOpt(val,txt){
+			createOpt(val, txt){
 				var opt = document.createElement('option')
 				opt.value = val
 				opt.innerText = txt
 				return opt
 			},
-			province (){
+			province(){
 				var opts = document.createDocumentFragment(),
 					opt = this.el_prov.children[0]
-				opts.appendChild(this.createOpt(-1, '-ÇëÑ¡ÔñÊ¡·İ-'))
+				opts.appendChild(this.createOpt(-1, '-è¯·é€‰æ‹©çœä»½-'))
 				for (var index in this.provinces){
 					opts.appendChild(this.createOpt(index,this.provinces[index]))
 				}
 				this.el_prov.replaceChild(opts, opt)
 			},
-			city (parentId){
+			city(parentId){
 				var opts = document.createDocumentFragment(),
 					opt = this.el_city.children[0]
-				opts.appendChild(this.createOpt(-1, '-ÇëÑ¡ÔñÊĞÇø-'))
+				opts.appendChild(this.createOpt(-1, '-è¯·é€‰æ‹©å¸‚åŒº-'))
 				if(parentId >= 0) {
 					var list = this.cities[parentId]
 					for (var index in list){
@@ -74,10 +74,10 @@
 				this.removeChild(this.el_city)
 				this.el_city.appendChild(opts)
 			},
-			district (ancestorId, parentId){
+			district(ancestorId, parentId){
 				var opts = document.createDocumentFragment(),
 					opt = this.el_dist.children[0]
-				opts.appendChild(this.createOpt(-1, '-ÇëÑ¡ÔñÇøÓò-'))
+				opts.appendChild(this.createOpt(-1, '-è¯·é€‰æ‹©åŒºåŸŸ-'))
 				if(parentId >= 0) {
 					var list = this.districts[ancestorId][parentId]
 					for (var index in list){
@@ -89,7 +89,7 @@
 			},
 			removeChild(el){
 				var children = el.children
-				for(var i = 0,len = children.length; len>i; len--){
+				for(var i = 0, len = children.length; len>i; len--){
 					el.removeChild(children[i])
 				}
 			},
@@ -101,7 +101,7 @@
 				}.bind(this),
 				this.el_city.onchange = function(e){
 					var ancest = this.el_prov.value,
-						parent = e.target.value
+					parent = e.target.value
 					this.district(ancest, parent)
 				}.bind(this)
 			}
