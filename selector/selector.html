@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>二级联动菜单</title>
+</head>
+<body>
+<select id="province">
+    <option value="-1">-请选择省份-</option>
+</select>
+<select name="" id="city">
+    <option value="-1">-请选择市区-</option>
+</select>
+<select name="" id="district">
+    <option value="-1">-请选择区域-</option>
+</select>
+
+<script>
+	(function(){
+		var distpicker = {
+			provinces: 	 ['北京市', '上海市', '浙江省'],
+			cities: [
+				['东城区', '西城区', '海淀区'],
+				['浦东区', '闵行区', '黄浦区'],
+				['杭州市', '绍兴市', '宁波市']
+			],
+			districts: [
+				[
+					['东城一区', '东城二区', '东城三区'],
+					['西城一区', '西城二区', '西城三区'],
+					['海淀一区', '海淀二区', '海淀三区']
+				],[
+					['浦东一区', '浦东二区', '浦东三区'],
+					['闵行一区', '闵行二区', '闵行三区'],
+					['黄浦一区', '黄浦二区', '黄浦三区']
+				],[
+					['杭州一区', '杭州二区', '杭州三区'],
+					['绍兴一区', '绍兴二区', '绍兴三区'],
+					['宁波一区', '宁波二区', '宁波三区']
+				]
+			],
+			el_prov: document.getElementById('province'),
+			el_city: document.getElementById('city'),
+			el_dist: document.getElementById('district'),
+			init(){
+				this.province()
+				this.trigger()
+			},
+			createOpt(val,txt){
+				var opt = document.createElement('option')
+				opt.value = val
+				opt.innerText = txt
+				return opt
+			},
+			province (){
+				var opts = document.createDocumentFragment(),
+					opt = this.el_prov.children[0]
+				opts.appendChild(this.createOpt(-1, '-请选择省份-'))
+				for (var index in this.provinces){
+					opts.appendChild(this.createOpt(index,this.provinces[index]))
+				}
+				this.el_prov.replaceChild(opts, opt)
+			},
+			city (parentId){
+				var opts = document.createDocumentFragment(),
+					opt = this.el_city.children[0]
+				opts.appendChild(this.createOpt(-1, '-请选择市区-'))
+				if(parentId >= 0) {
+					var list = this.cities[parentId]
+					for (var index in list){
+						opts.appendChild(this.createOpt(index,list[index]))
+					}	
+				}
+				this.removeChild(this.el_city)
+				this.el_city.appendChild(opts)
+			},
+			district (ancestorId, parentId){
+				var opts = document.createDocumentFragment(),
+					opt = this.el_dist.children[0]
+				opts.appendChild(this.createOpt(-1, '-请选择区域-'))
+				if(parentId >= 0) {
+					var list = this.districts[ancestorId][parentId]
+					for (var index in list){
+						opts.appendChild(this.createOpt(index,list[index]))
+					}	
+				}
+				this.removeChild(this.el_dist)
+				this.el_dist.appendChild(opts)
+			},
+			removeChild(el){
+				var children = el.children
+				for(var i = 0,len = children.length; len>i; len--){
+					el.removeChild(children[i])
+				}
+			},
+			trigger(){
+				this.el_prov.onchange = function(e){
+					var id = e.target.value
+					this.city(id)
+					this.district(id, -1)
+				}.bind(this),
+					this.el_city.onchange = function(e){
+					var ancest = this.el_prov.value,
+						parent = e.target.value
+					this.district(ancest, parent)
+				}.bind(this)
+			}
+		}
+		distpicker.init()
+	})()
+</script>
+</body>
+</html>
