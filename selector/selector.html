@@ -57,31 +57,29 @@
 					opt = this.el_prov.children[0]
 				opts.appendChild(this.createOpt(-1, '-请选择省份-'))
 				for (var index in this.provinces){
-					opts.appendChild(this.createOpt(index,this.provinces[index]))
+					opts.appendChild(this.createOpt(index, this.provinces[index]))
 				}
 				this.el_prov.replaceChild(opts, opt)
 			},
 			city(parentId){
-				var opts = document.createDocumentFragment(),
-					opt = this.el_city.children[0]
+				var opts = document.createDocumentFragment()
 				opts.appendChild(this.createOpt(-1, '-请选择市区-'))
 				if(parentId >= 0) {
 					var list = this.cities[parentId]
 					for (var index in list){
-						opts.appendChild(this.createOpt(index,list[index]))
+						opts.appendChild(this.createOpt(index, list[index]))
 					}	
 				}
 				this.removeChild(this.el_city)
 				this.el_city.appendChild(opts)
 			},
 			district(ancestorId, parentId){
-				var opts = document.createDocumentFragment(),
-					opt = this.el_dist.children[0]
+				var opts = document.createDocumentFragment()
 				opts.appendChild(this.createOpt(-1, '-请选择区域-'))
 				if(parentId >= 0) {
 					var list = this.districts[ancestorId][parentId]
 					for (var index in list){
-						opts.appendChild(this.createOpt(index,list[index]))
+						opts.appendChild(this.createOpt(index, list[index]))
 					}	
 				}
 				this.removeChild(this.el_dist)
@@ -89,7 +87,7 @@
 			},
 			removeChild(el){
 				var children = el.children
-				for(var i = 0, len = children.length; len>i; len--){
+				for(var i = 0, len = children.length; len > i; len--){
 					el.removeChild(children[i])
 				}
 			},
